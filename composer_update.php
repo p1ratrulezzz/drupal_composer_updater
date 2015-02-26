@@ -129,5 +129,3 @@ foreach ($list->raw as $info) {
 
 // Back to old current directory
 chdir($cwd);
-
-
