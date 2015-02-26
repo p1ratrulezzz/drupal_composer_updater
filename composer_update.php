@@ -114,13 +114,14 @@ if (!$drupal_root) {
   die('Can\'t find Drupal index.php');
 }
 
-$list = list_dir($drupal_root.'/sites');
+$list = list_dir($drupal_root.'/sites/all/modules');
 
 // Now search for composer.json files
 foreach ($list->raw as $info) {
   // Only check if it is not directory
   if (!isset($info['children']) && $info['basename'] == 'composer.json') {
     $composer_dir = $info['dirname'];
+    //echo $composer_dir."\n";
     chdir($composer_dir);
     // Run composer update for this composer dir
     syscall("{$php_bin} {$composer_bin} update");
